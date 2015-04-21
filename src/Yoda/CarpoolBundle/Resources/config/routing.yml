@@ -1,0 +1,3 @@
+carpool_homepage:
+    path:     /carpoolers/{name}
+    defaults: { _controller: CarpoolBundle:Default:index }

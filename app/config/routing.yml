@@ -1,0 +1,22 @@
+event:
+    resource: "@EventBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user_controller:
+    resource: "@UserBundle/Controller"
+    prefix:   /
+    type:      annotation
+
+baseball_controller:
+    resource: "@BaseballBundle/Controller"
+    prefix:   /
+    type:      annotation
+
+#carpool_controller:
+#    resource: "@CarpoolBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+carpool_controller:
+    resource: "@CarpoolBundle/Controller"
+    prefix:   /
+    type:      annotation

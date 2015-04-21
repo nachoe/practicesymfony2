@@ -1,0 +1,54 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">edit2 title</h3>
+                </div>
+                <div class="panel-body">
+                    {{ player.firstName }}
+                    <br/>
+                    <button class="btn btn-danger" data-ajax="ajax-trigger">click here</button>
+
+
+                </div>
+            </div>
+
+            <div class="well" id="my-well">
+
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            var $ajaxButton = $('button[data-ajax="ajax-trigger"]') ;
+
+
+            $ajaxButton.click(function(){
+                $ajaxButton.prop('disabled',true);
+
+                $.ajax({
+                    method: "GET",
+                    url: "{{ path("get_player_lastname_v2")}}",
+                    data: {"player_id": "{{ player.id }}"},
+                    success: function(response){
+                        $('#my-well').text(response.last_name)
+                    },
+                    error: function(){
+                        alert("Something Went Wrong!");
+                    }
+
+                }).always(function(){
+                    $ajaxButton.prop('disabled',false);
+                });
+                ;
+
+            });
+
+        });
+    </script>
+
+{% endblock %}
