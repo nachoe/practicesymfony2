@@ -21,7 +21,7 @@
         <br/>
         <a href="{{ path("delete_player",{id: player.id}) }}" class="btn btn-danger">Delete {{ player.firstName }} {{ player.lastName }}</a>
         <a href="{{ path("edit_player",{id: player.id}) }}" class="btn btn-info">Edit {{ player.firstName }} {{ player.lastName }}</a>
-        <a href="{{ path("edit2",{id: player.id}) }}" class="btn btn-primary edit-btn">Edit 2 {{ player.firstName }} {{ player.lastName }}</a>
+        <a href="{{ path("edit2",{id: player.id}) }}" class="btn btn-primary edit-btn">Async Edit {{ player.firstName }} {{ player.lastName }}</a>
             <div class="well" id="edit-player-{{ player.id }}" style="display: none">
                <form>
                    <div class="form-group">
