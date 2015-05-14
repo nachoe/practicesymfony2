@@ -1,13 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
     <head>
         <meta charset="UTF-8" />
         <title>
-            {%- if block('title') -%}
-                {{- block('title') -}} | Carpool
-            {%- else -%}
-                Baseball Bundle
-            {%- endif -%}
 
         </title>
         {% block stylesheets %}
@@ -21,6 +16,8 @@
 
             <script src="{{ asset('bundles/baseball/js/jQuery-v2.1.3.js') }}"></script>
             <script src="{{ asset('bundles/baseball/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('bundles/baseball/js/angular.min.js') }}"></script>
+            <script src="{{ asset('bundles/baseball/js/app.js') }}"></script>
 
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />

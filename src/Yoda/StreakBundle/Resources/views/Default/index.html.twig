@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+{% block title 'Title for Twigs' %}
+
+{% block body %}
+    {% for i in 1..10 %}
+    Hello <strong>{{ name|upper }}!</strong> # {{ i }}
+    {% endfor %}
+
+    <h2>Event Details</h2>
+
+    {{ app.request.attributes.get("_controller") }}
+
+
+   {# {{ event.name }}<br> #}
+    {# {{ event.location }} #}
+
+{% endblock %}

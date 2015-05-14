@@ -183,4 +183,26 @@ class PlayerController extends ApplicationController
         return new JsonResponse($jsonPlayer);
     }
 
+
+    /**
+     *
+     * @Route("/async_api", name="async_api")
+     * @Method({"GET"})
+     */
+    public function asyncApiAction(Request $request)
+    {
+
+       $player = $this->getRepository('Player')->findOneById(
+           array('id'=>4)
+       );
+        $jsonPlayer = array(
+            'fName' => $player->getFirstName(),
+            'lName' => $player->getLastName(),
+            'Position' => $player->getPosition()
+
+        );
+
+        return new JsonResponse($jsonPlayer);
+    }
+
 } 

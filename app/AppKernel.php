@@ -18,10 +18,12 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Yoda\EventBundle\EventBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new \Yoda\UserBundle\UserBundle(),
             new \Yoda\BaseballBundle\BaseballBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Yoda\CarpoolBundle\CarpoolBundle(),
+            new Yoda\StreakBundle\StreakBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Yoda\UserBundle\UserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -2,10 +2,10 @@ event:
     resource: "@EventBundle/Resources/config/routing.yml"
     prefix:   /
 
-user_controller:
-    resource: "@UserBundle/Controller"
-    prefix:   /
-    type:      annotation
+#user_controller:
+#    resource: "@UserBundle/Controller"
+#    prefix:   /
+#    type:      annotation
 
 baseball_controller:
     resource: "@BaseballBundle/Controller"
@@ -20,3 +20,11 @@ carpool_controller:
     resource: "@CarpoolBundle/Controller"
     prefix:   /
     type:      annotation
+
+streak_controller:
+    resource: "@StreakBundle/Controller"
+    prefix:   /
+    type:      annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

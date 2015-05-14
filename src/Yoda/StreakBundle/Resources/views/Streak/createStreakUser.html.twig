@@ -1,0 +1,23 @@
+{% extends 'StreakBundle::layout.html.twig' %}
+
+{% block body %}
+   <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Create Streak User</h3>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="{{ path('create_streakuser') }}">
+                        {{ form_widget(form) }}
+                        <br />
+                        <button class="btn btn-success">Create User</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
