@@ -192,17 +192,41 @@ class PlayerController extends ApplicationController
     public function asyncApiAction(Request $request)
     {
 
-       $player = $this->getRepository('Player')->findOneById(
-           array('id'=>4)
-       );
-        $jsonPlayer = array(
-            'fName' => $player->getFirstName(),
-            'lName' => $player->getLastName(),
-            'Position' => $player->getPosition()
+        $players = $this->getDoctrine()->getRepository('Yoda\\BaseballBundle\\Entity\\Player')->findAll();
 
-        );
+//        $json_array = array();
+//
+//        $data = (array) $players;
+//
+//        foreach($players as $key => $player) {
+//            $json_array[$key] = $player;
+//
+//        }
 
-        return new JsonResponse($jsonPlayer);
+        foreach($players as $player){
+
+            $json_array=array(
+                'fName' => $player->getFirstName(),
+                'lName' => $player->getLastName(),
+                'position' => $player->getPosition()
+            );
+        }
+
+
+
+
+
+//       $player = $this->getRepository('Player')->findOneById(
+//           array('id'=>4)
+//       );
+//        $jsonPlayer = array(
+//            'fName' => $player->getFirstName(),
+//            'lName' => $player->getLastName(),
+//            'Position' => $player->getPosition()
+//
+//        );
+
+        return new JsonResponse($json_array);
     }
 
 } 
