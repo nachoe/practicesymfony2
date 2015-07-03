@@ -1,0 +1,38 @@
+{% extends 'AngularBundle::layout.html.twig' %}
+{% block body %}
+    <br/>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Create Angplayer | {{ '{{ pageClass }}' }}</h3>
+                </div>
+                <div class="panel-body">
+                    <form name="angForm" method="post" data-ng-submit="addPlayer()">
+
+                        First Name:
+                        <br/>
+                        <input type="text" data-ng-model="angForm.fname"/> {{ '{{ angForm.fname }}' }}
+                        <br/>
+                        Last Name:
+                        <br/>
+                        <input type="text" data-ng-model="angForm.lname"/> {{ '{{ angForm.lname }}' }}
+                        <br/>
+                        Position:
+                        <br/>
+                        <input type="text" data-ng-model="angForm.position"/> {{ '{{ angForm.position }}' }}
+                        <br/>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                    <br/>
+                    <a href="#/">
+                        <button class="btn btn-info">Show Players</button>
+                    </a>
+                    <br/>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

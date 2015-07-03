@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+   <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Panel title</h3>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="{{ path('create_player') }}">
+                        {{ form_widget(form) }}
+                        <br />
+                        <button class="btn btn-success">Create Player</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

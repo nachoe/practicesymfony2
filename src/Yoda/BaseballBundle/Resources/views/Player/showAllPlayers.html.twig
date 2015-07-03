@@ -1,0 +1,103 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<h1>BaseBall Bundle</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Player List</h3>
+                </div>
+                <div class="panel-body">
+{% for player in players %}
+
+    <div class="player-div" data-player-id="{{ player.id }}">
+        First Name: <span class="display-fname">{{ player.firstName }}</span>
+        <br />
+        Last Name: <span class="display-lname">{{ player.lastName }}</span>
+        <br/>
+        Position: {{ player.position }}
+        <br/>
+        Team: {{ player.teamName.name }}
+        <br/>
+        <a href="{{ path("delete_player",{id: player.id}) }}" class="btn btn-danger">Delete {{ player.firstName }} {{ player.lastName }}</a>
+        <a href="{{ path("edit_player",{id: player.id}) }}" class="btn btn-info">Edit {{ player.firstName }} {{ player.lastName }}</a>
+        <a href="{{ path("edit2",{id: player.id}) }}" class="btn btn-primary edit-btn">Async Edit {{ player.firstName }} {{ player.lastName }}</a>
+            <div class="well" id="edit-player-{{ player.id }}" style="display: none">
+               <form>
+                   <div class="form-group">
+                       <label for="first-name-{{ player.id }}">
+                           First name
+                           <input class="form-control" type="text" id="first-name-{{ player.id }}" name="first-name-{{ player.id }}">
+                       </label>
+                   </div>
+                   <div class="form-group">
+                       <label for="last-name-{{ player.id }}">
+                           Last name
+                           <input class="form-control" type="text" id="last-name-{{ player.id }}" name="last-name-{{ player.id }}">
+                       </label>
+                   </div>
+                   <button type="submit" class="btn btn-success" >Submit</button>
+               </form>
+            </div>
+        <br/>
+    </div>
+{% endfor %}
+
+    </div>
+    </div>
+    </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $(".edit-btn").click(function(e){
+                var player_id = $(this).closest(".player-div").data('player-id');
+                e.preventDefault();
+                $("#edit-player-" + player_id).toggle();
+            });
+
+            $('button[type="submit"]').click(function(e){
+                e.preventDefault();
+                var $playerDiv = $(this).closest(".player-div");
+                var player_id = $playerDiv.data('player-id');
+                var fnametext = $.trim($("#first-name-" + player_id).val());
+                var lnametext = $.trim($("#last-name-" + player_id).val());
+
+                // if there is no values prevent form submission
+                if (fnametext === "" || lnametext === ""){return false};
+
+                var player = {
+                    fname: fnametext,
+                    lname: lnametext,
+                    id: player_id
+                };
+
+                $.ajax({
+                    method: "POST",
+                    url: "{{ path("async_player_edit")}}",
+                    data: player,
+                    success: function(json_player){
+                        $("#edit-player-" + player_id).hide();
+                        $playerDiv.find(".display-fname").text(json_player.fName);
+                        $playerDiv.find(".display-lname").text(json_player.lName);
+                    }
+
+                });
+
+            });
+
+
+
+
+        });
+    </script>
+
+<div ng-controller = "mainController">
+    <div ng-model="name in lname">
+        {{ '{{lname}}' }}
+    </div>
+</div>
+{% endblock %}
+
+
+
+

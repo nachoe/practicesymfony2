@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <meta charset="UTF-8" />
+        <title>
+
+        </title>
+        {% block stylesheets %}
+            {% stylesheets
+            'bundles/baseball/css/bootstrap.min.css'
+            %}
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+            <!-- Optional theme -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        {% block javascripts %}
+
+            <script src="{{ asset('bundles/angular/js/jQuery-v2.1.3.js') }}"></script>
+            {#<script src="{{ asset('bundles/angular/js/bootstrap.min.js') }}"></script>#}
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+            <script src="{{ asset('bundles/angular/js/angular.min.js') }}"></script>
+            <script src="{{ asset('bundles/angular/js/angular-route.min.js') }}"></script>
+            <script src="{{ asset('bundles/angular/js/app.js') }}"></script>
+
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </body>
+</html>

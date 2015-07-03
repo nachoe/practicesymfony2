@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<h1>Carpool Status</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-*">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Carpooler List</h3>
+                </div>
+                <div class="panel-body">
+{% for pooler in poolers %}
+
+
+    <br />
+
+        {% if pooler.status == "Not Carpooling"  %}
+           <a href="{{ path("edit_carpooler",{id: pooler.id}) }}" class="btn btn-danger btn-lg btn-block">{{ pooler.fname }} {{ pooler.lname }}: {{ pooler.status }}</a>
+        {% elseif pooler.status == "Carpooling" %}
+            <a href="{{ path("edit_carpooler",{id: pooler.id}) }}" class="btn btn-info btn-lg btn-block">{{ pooler.fname }} {{ pooler.lname }}: {{ pooler.status }}</a>
+        {% else %}
+            <a href="{{ path("edit_carpooler",{id: pooler.id}) }}" class="btn btn-success btn-lg btn-block">{{ pooler.fname }} {{ pooler.lname }}: {{ pooler.status }}</a>
+
+            {#<a href="{{ path("delete_carpooler",{id: pooler.id}) }}" class="btn btn-danger btn-sm">Delete {{ pooler.fname }} {{ pooler.lname }}</a>#}
+        {% endif %}
+    <br/>
+        {% if pooler.comments == ""  %}
+
+        {% else %}
+            {{ pooler.fname }}'s comments: {{ pooler.comments }}
+            <br/>
+        {% endif %}
+
+
+{% endfor %}
+
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+

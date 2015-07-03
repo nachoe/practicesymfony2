@@ -1,0 +1,42 @@
+{% extends 'AngularBundle::layout.html.twig' %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-*">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Ang Player List | {{ '{{ pageClass }}' }} </h3>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div data-ng-repeat="person in players">
+
+                            <div class="player-div" data-player-id="{{ '{{  person.id }}' }}">
+                                <a href="" class="btn btn-xs btn-danger" data-ng-click="deletePlayer()">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+
+                                ID: {{ '{{ person.id }}' }} - {{ '{{ person.fName }}' }} {{ '{{ person.lName }}' }}
+                                || {{ '{{ person.position }}' }}
+                            </div>
+                        </div>
+                        <br/>
+                        {{ '{{ status }}' }}
+                        <br/>
+
+                        <a href="#/createang">
+                            <button class="btn btn-info">Create new Player</button>
+                        </a>
+                        <br/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
