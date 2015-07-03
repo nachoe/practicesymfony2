@@ -23,7 +23,9 @@ class AppKernel extends Kernel
             new Yoda\CarpoolBundle\CarpoolBundle(),
             new Yoda\StreakBundle\StreakBundle(),
             new Yoda\AngularBundle\AngularBundle(),
+            new Yoda\UserBundle\UserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

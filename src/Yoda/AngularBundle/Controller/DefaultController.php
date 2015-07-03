@@ -15,7 +15,7 @@ class DefaultController extends Controller
 {
     /**
      *
-     * @Route("/", name="home")
+     * @Route("/angshow", name="home")
      * @Method("GET")
      * @Template
      */

@@ -15,11 +15,11 @@ class DefaultController extends Controller
 {
     /**
      *
-     * @Route("/streak", name="home")
+     * @Route("/", name="index")
      * @Method("GET")
      */
     public function indexAction()
     {
-        die("hello");
+        return $this->redirect($this->generateUrl('show_bets'));
     }
 }

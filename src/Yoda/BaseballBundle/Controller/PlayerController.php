@@ -35,8 +35,6 @@ class PlayerController extends ApplicationController
             return $this->redirect($this->generateUrl('show_all_players'));
 
         }
-
-
         return array(
             'form' => $form->createView(),
         );

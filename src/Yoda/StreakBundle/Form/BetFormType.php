@@ -10,8 +10,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Yoda\StreakBundle\Entity\Bet;
 
-class UserFormType extends AbstractType
+class BetFormType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -20,11 +21,12 @@ class UserFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', 'text', array('label' => 'First Name', 'required'=>false, 'attr' => array('class' => 'form-control')))
-            ->add('lastname', 'text', array('label' => 'Last Name', 'required'=>false, 'attr' => array('class' => 'form-control')))
-            ->add('entryname', 'text', array('label' => 'Entry Name', 'required'=>false, 'attr' => array('class' => 'form-control')))
-            ->add('entryid', 'integer', array('label' => 'Entry ID', 'required'=>false, 'attr' => array('class' => 'form-control')))
-            ->add('balance', 'integer', array('label' => 'Balance', 'required'=>false, 'attr' => array('class' => 'form-control')))
+            ->add('description', 'text', array('label' => 'Description', 'attr' => array('class' => 'form-control')))
+            ->add('amount', 'integer', array('label' => 'Bet Amount', 'attr' => array('class' => '')))
+            ->add('start_date', 'date', array('label' => 'Start Date', 'attr' => array('class' => '')))
+            ->add('end_date', 'date', array(
+                'label' => 'End Date',
+                'attr' => array('class' => '')))
         ;
     }
 
@@ -34,7 +36,7 @@ class UserFormType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Yoda\StreakBundle\Entity\User'
+            'data_class' => 'Yoda\StreakBundle\Entity\Bet'
         ));
     }
 

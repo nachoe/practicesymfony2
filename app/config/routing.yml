@@ -29,3 +29,6 @@ angular_controller:
     resource: "@AngularBundle/Controller"
     prefix:   /
     type:      annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
