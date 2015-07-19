@@ -14,16 +14,20 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollections;
+use Yoda\StreakBundle\Entity\Participant;
+use Yoda\UserBundle\Entity\User;
 
 
 /**
- * A record of an annual pm being performed
+ *
  *
  * @ORM\Table(name="bets")
  * @ORM\Entity
  *
  */
-class Bet extends BaseEntity{
+class Bet extends BaseEntity
+{
 
     /**
      * @var integer
@@ -42,7 +46,7 @@ class Bet extends BaseEntity{
     private $description;
 
     /**
-     * @var Participant
+     * @ORM\OneToMany(targetEntity="Participant", mappedBy="id")
      */
     private $participant;
 
@@ -65,7 +69,7 @@ class Bet extends BaseEntity{
     private $end_date;
 
     /**
-     * @var User
+     * @ORM\OneToMany(targetEntity="Yoda\UserBundle\Entity\User", mappedBy="id")
      */
     private $user_id;
 
