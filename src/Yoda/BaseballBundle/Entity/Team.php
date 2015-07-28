@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollections;
 
 
 /**
- * A record of an annual pm being performed
+ *
  *
  * @ORM\Table(name="team")
  * @ORM\Entity

@@ -17,6 +17,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollections;
 use Yoda\StreakBundle\Entity\Participant;
 use Yoda\UserBundle\Entity\User;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Exclude;
 
 
 /**
@@ -46,6 +49,7 @@ class Bet extends BaseEntity
     private $description;
 
     /**
+     * @Exclude
      * @ORM\OneToMany(targetEntity="Participant", mappedBy="id")
      */
     private $participant;
@@ -58,17 +62,18 @@ class Bet extends BaseEntity
 
     /**
      * @var \Datetime $start_date
-     * ORM\Column(name="start_date", type="datetime")
+     * @ORM\Column(name="start_date", type="datetime")
      */
     private $start_date;
 
     /**
      * @var \Datetime $end_date
-     * ORM\Column(name="end_date", type="datetime")
+     * @ORM\Column(name="end_date", type="datetime")
      */
     private $end_date;
 
     /**
+     * @Exclude
      * @ORM\OneToMany(targetEntity="Yoda\UserBundle\Entity\User", mappedBy="id")
      */
     private $user_id;
@@ -178,6 +183,4 @@ class Bet extends BaseEntity
     {
         $this->start_date = $start_date;
     }
-
-
-} 
+}

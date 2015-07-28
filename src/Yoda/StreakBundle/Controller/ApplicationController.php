@@ -16,13 +16,10 @@ abstract class ApplicationController extends Controller
     {
         $entity_path = sprintf('Yoda\\StreakBundle\\Entity\\%s', $repoName);
         return $this->getDoctrine()->getRepository($entity_path);
-
     }
 
-    protected function getEntityManager()
+    protected function getManager()
     {
-        return $this->getDoctrine()->getEntityManager();
+        return $this->getDoctrine()->getManager();
     }
-
-
-} 
+}

@@ -10,6 +10,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Yoda\StreakBundle\Form\BetFormType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Yoda\StreakBundle\Entity\User;
+use Yoda\StreakBundle\Entity\Bet;
+use Yoda\StreakBundle\Controller\ApplicationController;
+
 
 class StreakController extends ApplicationController
 {
@@ -54,20 +57,55 @@ class StreakController extends ApplicationController
 
     /**
      *
-     * @Route("/show_bets", name="show_bets")
+     * @Route("/show_bets", name="show_bets", options={"expose"=true})
      * @Method({"GET","POST"})
-     * @Template
+     * @Template()
      */
     public function showAction(Request $request)
     {
-        $id = $request->query->get('id');
         $bets = $this->getRepository('Bet')->findAll();
-        $user = $this->getDoctrine()->getRepository('Yoda\\UserBundle\\Entity\\User')->findOneById($id);
 
         return array(
-          'bets' => $bets,
-          'user' => $user,
+            'bets' => $bets,
         );
     }
 
+    /**
+     *
+     * @Route("/get_data", name="get_all_bet_data", options={"expose"=true})
+     * @Method({"GET"})
+     */
+    public function getAllBetsDataAction(Request $request)
+    {
+        $bets = $this->getRepository('Bet')->findAll();
+
+        $serializer = $this->get('jms_serializer');
+        $s_bets = $serializer->serialize($bets, 'json');
+        //$json_data = json_encode($s_bets, true);
+
+
+        return new JsonResponse($s_bets);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @Route("/update", name="update_bet", options={"expose"=true})
+     * @Method({"POST","GET"})
+     */
+    public function updateBets(Request $request)
+    {
+        $em = $this->getManager();
+        $post_data = json_decode($request->getContent(), true);
+        $serializer = $this->get('jms_serializer');
+
+        $test = $serializer->deserialize(json_encode($post_data), 'Yoda\\StreakBundle\\Entity\\Bet', 'json');
+
+        $em->merge($test);
+
+        $em->persist($test);
+        $em->flush();
+
+        return new JsonResponse($post_data);
+    }
 }

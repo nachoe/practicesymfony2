@@ -6,25 +6,50 @@
             <h3 class="panel-title">Show all bets</h3>
         </div>
         <div class="panel-body">
-            <div class="col-xs-6 col-md-6"><strong>Description</strong></div>
-            <div class="col-xs-2 col-md-2"><strong>Bet amount</strong></div>
-            <div class="col-xs-2 col-md-2"><strong>Bet amount</strong></div>
-            {% for bet in bets %}
-                <div class="row" style="border-top: 1px; padding-top: 10px;">
-                    <div class="col-xs-6 col-md-6">
-                        {{ bet.description }}
-                    </div>
-                    <div class="col-xs-2 col-md-2">
-                        {{ bet.amount }}
-                    </div>
-                    <div class="col-xs-2 col-md-2">
-                        <button class="btn btn-info btn-xs">Select</button>
-                    </div>
-                </div>
-            {% endfor %}
+            <form name="betForm">
+                <table class="show-bets table table-striped" >
+                    <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Bet amount</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="bet in bets" ng-include="getTemplate(bet)">
+                    </tbody>
+                </table>
+            </form>
             <div class="col-xs-10 col-md-10">
                 <a href="{{ path('create_bet') }}" class="btn btn-primary">Propose new bet</a>
             </div>
+            <script type="text/ng-template" id="showbets">
+                <tr>
+                    <td>{[{ bet.description }]}</td>
+                    <td>${[{ bet.amount }]}</td>
+                    <td>
+                        <button class="btn btn-info btn-small" ng-click="showEdits(bet)">
+                            <span class="glyphicon glyphicon-check"></span> Edit
+                        </button>
+                        <button class="btn btn-info btn-small">
+                            <span class="glyphicon glyphicon-plus"></span> Add
+                        </button>
+                    </td>
+                </tr>
+            </script>
+            <script type="text/ng-template" id="editbets">
+                <tr>
+                    <td><input type="text" ng-model="bet.description"></td>
+                    <td><input type="number" ng-model="bet.amount"></td>
+                    <td>
+                        <button class="btn btn-info btn-small" ng-click="saveBet(bet)">
+                            <span class="glyphicon glyphicon-check"></span> Save
+                        </button>
+                        <button class="btn btn-info btn-small" ng-click="cancel()">
+                            <span class="glyphicon glyphicon-plus"></span> Cancel
+                        </button>
+                    </td>
+                </tr>
+            </script>
         </div>
     </div>
 {% endblock %}
